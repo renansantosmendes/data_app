@@ -5,9 +5,9 @@ segredo_consumidor = 'xxxxxxx'
 token_acesso = 'xxxxxxx'
 token_acesso_segredo = 'xxxxxxx'
 
-api_key = ''
-api_key_secret = ''
-bearer_token = ''
+api_key = '55DU47iOE4ED67GwLnE0Tno6O'
+api_key_secret = '55DU47iOE4ED67GwLnE0Tno6O'
+bearer_token = 'AAAAAAAAAAAAAAAAAAAAAMndgQEAAAAAM%2BmCaGQeAyJpWOcdfBKEWDnp9BE%3DMTOMOiKFD7DBZTwk6lR7nnD6loJFsVGmChaFxKu4W7UESpNAYL'
 
 
 if __name__ == '__main__':
