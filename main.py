@@ -15,9 +15,17 @@ cnn_model, time_serie_model = read_models('.\models',
 
 st.title('Data Application: COVID-19')
 
-st.line_chart(dataframe)
-days_to_predict = st.slider('Days to predict', 0, 15, 0)
+
+days_to_predict = st.slider('Days to predict', 0, 60, 0)
 st.write(f'Days to predict {days_to_predict}')
+
+start_day = st.slider('Start Day', 0, dataframe.shape[0], 0)
+st.write(f'Start Day {start_day}')
+
+end_day = st.slider('End Day', start_day, dataframe.shape[0], 0)
+st.write(f'End Day {end_day}')
+
+st.line_chart(dataframe.values.tolist()[start_day:end_day])
 
 
 def read_image(name='image'):

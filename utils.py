@@ -22,8 +22,26 @@ def read_models(root: str,
 @st.experimental_singleton
 def read_time_serie_data():
     data_root = 'C:\\PUC\\datasets\\timeserie_covid'
-    covid_data = pd.read_csv(os.path.join(data_root,
-                                          'HIST_PAINEL_COVIDBR_2020_Parte1_19ago2022.csv'),
-                             sep=';')
-    dataframe = covid_data[covid_data['regiao'] == 'Brasil']['casosNovos']
+    files = os.listdir(data_root)
+    files.sort()
+    for i in files:
+        print(i)
+    data_list = [pd.read_csv(os.path.join(data_root, file_name), sep=';') for file_name in files]
+    data = pd.concat(data_list[:], axis=0)
+    data.head()
+    dataframe = data[data['regiao'] == 'Brasil']['casosNovos']
     return dataframe
+
+
+@st.experimental_singleton
+def generate_dataset(dataframe):
+    dataset = dataframe.values
+    dataset = dataset.astype('float32')
+    return dataset
+
+
+@st.experimental_singleton
+def generate_scaler(dataset):
+    scaler = MinMaxScaler(feature_range=(0, 1))
+    dataset = scaler.fit_transform([[i] for i in dataset])
+    return scaler, dataset
